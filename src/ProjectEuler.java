@@ -1069,6 +1069,76 @@ public class ProjectEuler {
     }
     
     /**
+     * @author Simon Alford
+     * This ended up being a little more complicated than I expected.
+     * Algorithmically, still brute force, but not simple to check if it's valid.
+     */
+   
+    public static void problem33()
+    {
+    	//Let's try a brute force solution first.
+    	int numProd = 1, denProd = 1;
+    	//go through two digit fractions less than one
+    	for(int den = 12; den < 100; den++)
+    	{
+    		for(int num = 11; num < den; num++) //fraction must be less than one, so only go while num < den
+    		{
+    			//if there are zeros, the number will be trivial.
+    			if(num % 10 != 0 && den % 10 != 0)
+    			{
+    				String numStr = String.valueOf(num);
+    				String denStr = String.valueOf(den);
+    				
+    				for(int i = 0; i < 2; i++)
+    				{
+    					int n = Integer.parseInt(numStr.substring(i,i+1));
+    					for(int j = 0; j < 2; j++){
+    						int d = Integer.parseInt(denStr.substring(j,j+1));
+    						
+    						char c1, c2;
+    						if(i == 0){
+    							c1 = numStr.charAt(1);
+    						}else{
+    							c1 = numStr.charAt(0);
+    						}
+    						
+    						if(j == 0){
+    							c2 = denStr.charAt(1);
+    						}else{
+    							c2 = denStr.charAt(0);
+    						}
+    							
+    						if(c1 == c2)
+    						{
+    							if((double)n / (double)d == (double)num/(double)den)
+    							{
+    								//System.out.println(n + "/" + d);
+    								//System.out.println(num + "/" + den);
+    								//System.out.println();
+    								
+    								numProd *=n;
+    								denProd *=d;
+    							}
+    						}
+    					}
+					}	
+    			}
+    		}	
+    	}
+    	
+    	for(int i = 2; i <= numProd; i++)
+    	{
+    		while(denProd % i == 0 && numProd % i == 0)
+    		{
+    			numProd/=i;
+    			denProd/=i;
+    			i++;
+    		}
+    	}
+    	System.out.println("Simplified denominator: " + denProd);
+    }
+    
+    /**
      * @author Manu Singhal
      * 
      * Find the sum of all palindromes in binary and
@@ -1950,6 +2020,6 @@ public class ProjectEuler {
     
     public static void main(String[] args)
     {
-        problem3();
+        problem33();
     }    
 }
