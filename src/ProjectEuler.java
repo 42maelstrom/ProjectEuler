@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.*;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -1345,8 +1346,8 @@ public class ProjectEuler {
                 String play1Hand = hands.substring(0, 15);
                 String play2Hand = hands.substring(15) + " ";
 
-                ArrayList<Card> p1 = new ArrayList<>();
-                ArrayList<Card> p2 = new ArrayList<>();
+                ArrayList<Card> p1 = new ArrayList<Card>();
+                ArrayList<Card> p2 = new ArrayList<Card>();
 
                 // loop to intialize the different cards
                 for(int p = 0; p < 5; p ++)
@@ -2020,6 +2021,6 @@ public class ProjectEuler {
     
     public static void main(String[] args)
     {
-        problem33();
+        
     }    
 }
